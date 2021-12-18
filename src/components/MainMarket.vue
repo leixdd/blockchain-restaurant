@@ -40,7 +40,7 @@
               <p class="text-lg font-semibold text-gray-900 mb-0">
                 {{ menu.description }}
               </p>
-              <p class="text-md text-gray-800 mt-0">{{ menu.price }} ETH</p>
+              <p class="text-md text-gray-800 mt-0">{{ menu.price }} MATIC</p>
             </div>
             <div class="flex flex-col-reverse mb-1 mr-4 group cursor-pointer">
               <svg
@@ -69,6 +69,7 @@
 
 <script>
 import ReattaMenu from '../abis/ReattaEatsContract.json'
+import Swal from 'sweetalert2'
 
 export default {
   name: 'MainMarket',
@@ -100,6 +101,13 @@ export default {
 
       //get network data
       const netID = await window.web3.eth.net.getId()
+
+      if(netID !== 80001)
+      {
+        Swal.fire("Opps!", "You must be in POLYGON MUMBAI NETWORK", "error");
+        return;
+      }
+
       const netData = ReattaMenu.networks[netID]
 
       if (netData) {
