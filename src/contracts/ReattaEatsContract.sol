@@ -5,15 +5,17 @@ pragma solidity ^0.5.0;
 contract ReattaEatsContract {
 
   address owner;
-  uint256 menuCount;
-  mapping(uint256 => Menu) public menus;
+  uint256 public menuCount = 0;
+  mapping(uint => Menu) public menus;
 
   struct Menu {
-    uint256 id;
+    uint id;
     string image_hash;
     string description;
-    uint256 price;
+    string price;
   }
+
+
 
   constructor() public {
     owner = msg.sender;
@@ -24,9 +26,14 @@ contract ReattaEatsContract {
     _;
   }
 
-  function addMenu (string memory _imageHash, string memory _desc, uint256 memory price) public onlyOwner {
+  function addMenu (string memory _imageHash, string memory _desc, string memory price) public onlyOwner{
     menuCount ++;
     menus[menuCount] = Menu(menuCount, _imageHash, _desc, price);
   }
 
+  // if call of isOwner, enable the component of adding menu 
+  function isOwner() public view returns(bool) {
+    return (msg.sender == owner);
+  }
+  
 }
