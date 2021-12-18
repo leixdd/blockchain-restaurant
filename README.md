@@ -1,4 +1,4 @@
-# reatta-test-blockchain
+-blockchain-restaurant
 
 ## Project setup
 ```
