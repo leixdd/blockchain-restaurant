@@ -1,4 +1,4 @@
-#blockchain-restaurant
+# blockchain-restaurant
 
 ## Project setup
 ```
